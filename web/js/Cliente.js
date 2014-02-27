@@ -13,6 +13,9 @@ function Cliente(nombre, apellidos, fNac, codCliente) {
     this.nombre = nombre;
     this.apellidos = apellidos;
     this.fNac = fNac;
+    
+    this.getNombre = getNombre;
+    this.setNombre = setNombre;
 }
 
 function getNombre() {
