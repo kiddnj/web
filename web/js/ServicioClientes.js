@@ -53,25 +53,25 @@ function deserializar(){
 function avisoNombre() {
     if (document.getElementById("nombre").value === "") {
         document.getElementById("nombre").value = "Campo no relleno";
-        document.getElementById("nombre").style.color = "red";
+        document.getElementById("nombre").style.backgroundColor = "#ff7878";
     } else if (document.getElementById("nombre").value === "Campo no relleno") {
         document.getElementById("nombre").value = "";
-        document.getElementById("nombre").style.color = "black";
+        document.getElementById("nombre").style.backgroundColor = "white";
     } else {
-        document.getElementById("nombre").style.color = "black";
+        document.getElementById("nombre").style.backgroundColor = "white";
     }
 }
 
 function avisoApellido() {
     if (document.getElementById("apellidos").value === "") {
         document.getElementById("apellidos").value = "Campo no relleno";
-        document.getElementById("apellidos").style.color = "red";
+        document.getElementById("apellidos").style.backgroundColor = "#ff7878";
     }
     else if (document.getElementById("apellidos").value === "Campo no relleno") {
         document.getElementById("apellidos").value = "";
-        document.getElementById("apellidos").style.color = "black";
+        document.getElementById("apellidos").style.backgroundColor = "white";
     } else {
-        document.getElementById("apellidos").style.color = "black";
+        document.getElementById("apellidos").style.backgroundColor = "white";
     }
 }
 
@@ -83,6 +83,6 @@ function validarFormatoFecha() {
     var year = fechaf[2];
     var date = new Date(year, month, '0');
     if ((day - 0) > (date.getDate() - 0)) {
-        document.getElementById("fNac").style.color = "red";
+        document.getElementById("fNac").style.backgroundColor = "#ff7878";
     }    
 }
