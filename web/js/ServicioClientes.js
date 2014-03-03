@@ -43,7 +43,7 @@ function serializar(){
 
 function deserializar(){
     if(typeof(Storage) !== "undefined"){
-        arrayClientes = JSON.parse(localStorage.getItem("CLIENTES"));
+        arrayClientes = JSON.parse(sessionStorage.getItem("CLIENTES"));
     }else{
         
     }
