@@ -21,10 +21,7 @@
 
                 add(new Cliente(nombre, apellidos, fNac, codCliente));
                 codCliente++;
-            }
-            function redirigir(page){
-                document.location = page;
-            }
+            }            
         </script>
     </head>
     <body>
@@ -37,7 +34,7 @@
             </fieldset>
             <fieldset id="actions">
                 <input type="button" id="submit" value="Entrar" onclick="anadir()">
-                <input type="button" id="submit" value="Listar" onclick="redirigir(listar.jsp)">
+                <input type="button" id="submit" value="Listar" onclick="document.location = 'listar.jsp'">
             </fieldset>
         </form>
     </body>

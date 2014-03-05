@@ -25,7 +25,9 @@ function modify() {
 function listAll() {
     deserializar();
     for (i = 0; i < arrayClientes.length; i++) {
-        alert("CodCliente: " + sessionClientes[i].codCliente + "\n" + "Cliente: " + arrayClientes[i].nombre);
+        //document.write("CodCliente: " + arrayClientes[i].codCliente + "<br>" + "Cliente: " + arrayClientes[i].nombre);
+        //document.write("<br><br>");
+        document.write("<li>CodCliente: " + arrayClientes[i].codCliente + " Cliente: " + arrayClientes[i].nombre + "</li>");
     }
 }
 
@@ -35,7 +37,7 @@ function filter() {
 
 function serializar(){
     if(typeof(Storage) !== "undefined"){
-        sessionStorage.setItem("CLIENTES",JSON.stringify(arrayClientes));
+        localStorage.setItem("CLIENTES",JSON.stringify(arrayClientes));
     }else{
         
     }
@@ -43,7 +45,7 @@ function serializar(){
 
 function deserializar(){
     if(typeof(Storage) !== "undefined"){
-        arrayClientes = JSON.parse(sessionStorage.getItem("CLIENTES"));
+        arrayClientes = JSON.parse(localStorage.getItem("CLIENTES"));
     }else{
         
     }

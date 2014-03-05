@@ -13,7 +13,11 @@
         <script type="text/javascript" src="js/ServicioClientes.js"></script>
         <title>Listar</title>
     </head>
-    <body onLoad="listAll()">
-        
+    <body>
+        <ul id="lista">
+            <script type="text/javascript">
+                listAll();
+            </script>
+        </ul>
     </body>
 </html>
