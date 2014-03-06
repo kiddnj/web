@@ -21,7 +21,7 @@
 
                 add(new Cliente(nombre, apellidos, fNac, codCliente));
                 codCliente++;
-            }            
+            }
         </script>
     </head>
     <body>
