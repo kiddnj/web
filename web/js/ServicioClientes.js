@@ -25,9 +25,8 @@ function modify() {
 function listAll() {
     deserializar();
     for (i = 0; i < arrayClientes.length; i++) {
-        //document.write("CodCliente: " + arrayClientes[i].codCliente + "<br>" + "Cliente: " + arrayClientes[i].nombre);
-        //document.write("<br><br>");
-        document.write("<li>CodCliente: " + arrayClientes[i].codCliente + " Cliente: " + arrayClientes[i].nombre + "</li>");
+        document.getElementById("lista").innerHTML += "CodCliente: " +
+                arrayClientes[i].codCliente + " Cliente: " + arrayClientes[i].nombre + "<br>";
     }
 }
 
