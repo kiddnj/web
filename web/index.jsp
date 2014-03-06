@@ -15,9 +15,9 @@
         <script type="text/javascript">
             var codCliente = 1;
             function anadir() {
-                nombre = document.getElementById("nombre").value;
-                apellidos = document.getElementById("apellidos").value;
-                fNac = document.getElementById("fNac").value;
+                nombre = document.forms["login"]["nombre"].value;
+                apellidos = document.forms["login"]["apellidos"].value;
+                fNac = document.forms["login"]["fNac"].value;
 
                 add(new Cliente(nombre, apellidos, fNac, codCliente));
                 codCliente++;
@@ -28,9 +28,9 @@
         <form id="login">
             <h1>Entrar</h1>
             <fieldset id="inputs">
-                <input id="nombre" type="text" placeholder="Nombre" required onFocus="avisoNombre()" onblur="avisoNombre()">   
-                <input id="apellidos" type="text" placeholder="Apellidos" required onFocus="avisoApellido()"  onblur="avisoApellido()">
-                <input id="fNac" type="date" placeholder="Fecha de nacimiento" required onFocus="validarFormatoFecha()"  onblur="validarFormatoFecha()">
+                <input name="nombre" type="text" placeholder="Nombre" required onFocus="avisoNombre()" onblur="avisoNombre()">   
+                <input name="apellidos" type="text" placeholder="Apellidos" required onFocus="avisoApellido()"  onblur="avisoApellido()">
+                <input name="fNac" type="date" placeholder="Fecha de nacimiento" required onFocus="validarFormatoFecha()"  onblur="validarFormatoFecha()">
             </fieldset>
             <fieldset id="actions">
                 <input type="button" id="submit" value="Entrar" onclick="anadir()">
