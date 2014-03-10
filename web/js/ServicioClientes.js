@@ -4,22 +4,33 @@
  * and open the template in the editor.
  */
 var arrayClientes = new Array();
+var codCliente = 1;
 
 function add(cliente) {
     arrayClientes.push(cliente);
     serializar();
 }
 
-function borrar() {
-
+function borrar(posicion) {
+    arrayClientes.splice(posicion,1);
+    serializar();
 }
 
-function search() {
-
+function search(codigo) {
+    var encontrado = false;
+    while(i < arrayClientes.length && !encontrado){
+        if(arrayClientes[i].codCliente === codigo){
+            var cliente = arrayClientes[i];
+            encontrado = true;
+        }else{
+            i++;
+        }
+    }
+    return cliente;
 }
 
-function modify() {
-
+function modify(codigo) {
+    
 }
 
 function listAll() {
@@ -34,45 +45,52 @@ function filter() {
 
 }
 
-function serializar(){
-    if(typeof(Storage) !== "undefined"){
-        localStorage.setItem("CLIENTES",JSON.stringify(arrayClientes));
-    }else{
-        
+
+function anadir() {
+    nombre = document.forms["login"]["nombre"].value;
+    apellidos = document.forms["login"]["apellidos"].value;
+    fNac = document.forms["login"]["fNac"].value;
+
+    add(new Cliente(nombre, apellidos, fNac, codCliente));
+    codCliente++;
+}
+
+function serializar() {
+    if (typeof (Storage) !== "undefined") {
+        sessionStorage.setItem("CLIENTES", JSON.stringify(arrayClientes));
+    } else {
+
     }
 }
 
-function deserializar(){
-    if(typeof(Storage) !== "undefined"){
-        arrayClientes = JSON.parse(localStorage.getItem("CLIENTES"));
-    }else{
-        
+function deserializar() {
+    if (typeof (Storage) !== "undefined") {
+        arrayClientes = JSON.parse(sessionStorage.getItem("CLIENTES"));
+    } else {
+
     }
 }
 
 
 function avisoNombre() {
-    if (document.getElementById("nombre").value === "") {
-        document.getElementById("nombre").value = "Campo no relleno";
-        document.getElementById("nombre").style.backgroundColor = "#ff7878";
-    } else if (document.getElementById("nombre").value === "Campo no relleno") {
-        document.getElementById("nombre").value = "";
+    var patron = /[A-Za-z]/;
+    var nombre = document.getElementById("nombre").value;
+    if (patron.test(nombre)) {
         document.getElementById("nombre").style.backgroundColor = "white";
     } else {
-        document.getElementById("nombre").style.backgroundColor = "white";
+        document.getElementById("nombre").value = "Campo no relleno";
+        document.getElementById("nombre").style.backgroundColor = "#ff7878";
     }
 }
 
 function avisoApellido() {
-    if (document.getElementById("apellidos").value === "") {
-        document.getElementById("apellidos").value = "Campo no relleno";
-        document.getElementById("apellidos").style.backgroundColor = "#ff7878";
-    }
-    else if (document.getElementById("apellidos").value === "Campo no relleno") {
-        document.getElementById("apellidos").value = "";
+    var patron = /[A-Za-z]/;
+    var nombre = document.getElementById("apellidos").value;
+    if (patron.test(nombre)) {
         document.getElementById("apellidos").style.backgroundColor = "white";
     } else {
-        document.getElementById("apellidos").style.backgroundColor = "white";
+        document.getElementById("apellidos").value = "Campo no relleno";
+        document.getElementById("apellidos").style.backgroundColor = "#ff7878";
     }
 }
 
@@ -85,5 +103,5 @@ function validarFormatoFecha() {
     var date = new Date(year, month, '0');
     if ((day - 0) > (date.getDate() - 0)) {
         document.getElementById("fNac").style.backgroundColor = "#ff7878";
-    }    
+    }
 }
