@@ -12,25 +12,25 @@ function add(cliente) {
 }
 
 function borrar(posicion) {
-    arrayClientes.splice(posicion,1);
-    serializar();
-}
-
-function search(codigo) {
-    var encontrado = false;
-    while(i < arrayClientes.length && !encontrado){
-        if(arrayClientes[i].codCliente === codigo){
-            var cliente = arrayClientes[i];
-            encontrado = true;
-        }else{
-            i++;
-        }
+    if (posicion >= 0 && posicion < arrayClientes.length) {
+        arrayClientes.splice(posicion, 1);
+        serializar();
+    }else{
+        alert("Posicion no valida");
     }
-    return cliente;
+
 }
 
-function modify(codigo) {
+function search() {
     
+}
+
+function modify() {
+    var codigo = document.forms["modify"]["codigo"].value;
+    arrayClientes[codigo-1].nombre = document.forms["modify"]["nombre"].value;
+    arrayClientes[codigo-1].apellidos = document.forms["modify"]["apellidos"].value;
+    arrayClientes[codigo-1].fNac = document.forms["modify"]["fNac"].value;
+    serializar();
 }
 
 function listAll() {
@@ -53,6 +53,15 @@ function anadir() {
 
     add(new Cliente(nombre, apellidos, fNac, codCliente));
     codCliente++;
+}
+
+function cargarDatos(){
+    var codigo = document.forms["modify"]["code"].value;
+    deserializar();
+    document.forms["modify"]["nombre"].value = arrayClientes[codigo].nombre;
+    document.forms["modify"]["apellidos"].value = arrayClientes[codigo].apellidos;
+    document.forms["modify"]["fNac"].value = arrayClientes[codigo].fNac;
+    document.forms["modify"]["codigo"].value = arrayClientes[codigo].codCliente;
 }
 
 function serializar() {
