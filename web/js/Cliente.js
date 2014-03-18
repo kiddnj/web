@@ -7,12 +7,14 @@ var codCliente;
 var nombre;
 var apellidos;
 var fNac;
+var dni;
 
-function Cliente(nombre, apellidos, fNac, codCliente) {
+function Cliente(nombre, apellidos, fNac, dni, codCliente) {
     this.codCliente = codCliente;
     this.nombre = nombre;
     this.apellidos = apellidos;
     this.fNac = fNac;
+    this.dni = dni;
     
     this.getNombre = getNombre;
     this.setNombre = setNombre;

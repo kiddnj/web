@@ -11,25 +11,33 @@ function add(cliente) {
     serializar();
 }
 
-function borrar(posicion) {
-    if (posicion >= 0 && posicion < arrayClientes.length) {
-        arrayClientes.splice(posicion, 1);
+function borrar(code) {
+    if (confirm("¿Desea borrar este cliente?")) {
+        deserializar();
+        arrayClientes.splice(code, 1);
         serializar();
-    }else{
-        alert("Posicion no valida");
+        document.location = 'listar.jsp';
     }
-
 }
 
-function search() {
-    
+function filter(){
+    deserializar();
+    var dni = document.forms["filter"]["dni"].value;
+    for (i = 0; i < arrayClientes.length; i++) {
+        if(arrayClientes[i].dni === dni){
+            document.getElementById("listaFiltrada").innerHTML += "CodCliente: " +
+                arrayClientes[i].codCliente + " Cliente: " + arrayClientes[i].nombre +
+                " <a href=\"modify.jsp?code=" + i + "\">Editar</a> <a href=\"javascript:borrar(" + i + ")\">Borrar</a><br>";
+        }
+    }
 }
 
 function modify() {
     var codigo = document.forms["modify"]["codigo"].value;
-    arrayClientes[codigo-1].nombre = document.forms["modify"]["nombre"].value;
-    arrayClientes[codigo-1].apellidos = document.forms["modify"]["apellidos"].value;
-    arrayClientes[codigo-1].fNac = document.forms["modify"]["fNac"].value;
+    arrayClientes[codigo].nombre = document.forms["modify"]["nombre"].value;
+    arrayClientes[codigo].apellidos = document.forms["modify"]["apellidos"].value;
+    arrayClientes[codigo].fNac = document.forms["modify"]["fNac"].value;
+    arrayClientes[codigo].dni = document.forms["modify"]["dni"].value;
     serializar();
 }
 
@@ -37,31 +45,37 @@ function listAll() {
     deserializar();
     for (i = 0; i < arrayClientes.length; i++) {
         document.getElementById("lista").innerHTML += "CodCliente: " +
-                arrayClientes[i].codCliente + " Cliente: " + arrayClientes[i].nombre + "<br>";
+                arrayClientes[i].codCliente + " Cliente: " + arrayClientes[i].nombre +
+                " <a href=\"modify.jsp?code=" + i + "\">Editar</a> <a href=\"javascript:borrar(" + i + ")\">Borrar</a><br>";
     }
 }
-
-function filter() {
-
-}
-
 
 function anadir() {
     nombre = document.forms["login"]["nombre"].value;
     apellidos = document.forms["login"]["apellidos"].value;
     fNac = document.forms["login"]["fNac"].value;
+    dni = document.forms["login"]["dni"].value;
 
-    add(new Cliente(nombre, apellidos, fNac, codCliente));
+    add(new Cliente(nombre, apellidos, fNac, dni, codCliente));
     codCliente++;
 }
 
-function cargarDatos(){
-    var codigo = document.forms["modify"]["code"].value;
+function cargarDatos() {
+    var Url = location.href;
+    var codigo;
+    url = Url.replace(/.*\?(.*?)/, "$1");
+    variables = url.split("&");
+    for (i = 0; i < variables.length; i++) {
+        codigo = variables[i].split("=");
+        eval('var ' + codigo[0] + '="' + codigo[1] + '"');
+    }
     deserializar();
-    document.forms["modify"]["nombre"].value = arrayClientes[codigo].nombre;
-    document.forms["modify"]["apellidos"].value = arrayClientes[codigo].apellidos;
-    document.forms["modify"]["fNac"].value = arrayClientes[codigo].fNac;
-    document.forms["modify"]["codigo"].value = arrayClientes[codigo].codCliente;
+    document.forms["modify"]["nombre"].value = arrayClientes[code].nombre;
+    document.forms["modify"]["apellidos"].value = arrayClientes[code].apellidos;
+    document.forms["modify"]["fNac"].value = arrayClientes[code].fNac;
+    document.forms["modify"]["dni"].value = arrayClientes[code].dni;
+    document.forms["modify"]["codigo"].value = code;
+
 }
 
 function serializar() {
@@ -100,6 +114,17 @@ function avisoApellido() {
     } else {
         document.getElementById("apellidos").value = "Campo no relleno";
         document.getElementById("apellidos").style.backgroundColor = "#ff7878";
+    }
+}
+
+function avisoDNI() {
+    var patron = /^[0-9]{8}[A-Z]{1}$/;
+    var nombre = document.getElementById("dni").value;
+    if (patron.test(nombre)) {
+        document.getElementById("dni").style.backgroundColor = "white";
+    } else {
+        document.getElementById("dni").value = "Campo no relleno";
+        document.getElementById("dni").style.backgroundColor = "#ff7878";
     }
 }
 

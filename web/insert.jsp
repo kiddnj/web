@@ -19,6 +19,7 @@
             <fieldset id="inputs">
                 <input name="nombre" id="nombre" type="text" placeholder="Nombre" required onFocus="avisoNombre()" onblur="avisoNombre()">   
                 <input name="apellidos" id="apellidos" type="text" placeholder="Apellidos" required onFocus="avisoApellido()"  onblur="avisoApellido()">
+                <input name="dni" id="dni" type="text" placeholder="DNI" required onFocus="avisoDNI()"  onblur="avisoDNI()">
                 <input name="fNac" id="fNac" type="date" placeholder="Fecha de nacimiento" required onFocus="validarFormatoFecha()"  onblur="validarFormatoFecha()">
             </fieldset>
             <fieldset id="actions">
